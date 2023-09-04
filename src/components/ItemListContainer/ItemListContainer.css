@@ -1,0 +1,17 @@
+.itemListContainer{
+    justify-content: center;
+}
+.itemListContainer ul{
+    display: flex;
+    flex-direction: row;
+}
+
+.itemListContainer ul li{
+    list-style: none;
+}
+
+.itemListContainer ul li a{
+    cursor: pointer;
+    padding: 10px;
+    font-size: 18px;
+}

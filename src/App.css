@@ -1,0 +1,12 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Inter', sans-serif;
+    /* background-color: #0d1321; */
+    background-color: aliceblue;
+    color: #0d1321;
+}

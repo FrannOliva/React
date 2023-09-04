@@ -1,0 +1,12 @@
+.navbar{
+    background-color: #F0EBD8;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.logotipo{
+    height: 200px;
+}
