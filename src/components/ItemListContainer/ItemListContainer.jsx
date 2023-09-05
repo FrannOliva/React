@@ -1,9 +1,9 @@
 import "./ItemListContainer.css"
 
-const ItemListContainer = () => {
+const ItemListContainer = (props) => {
     return(
         <div className="greetings">
-            <h1>Bienvenidos a BANIRA</h1>
+            <p>{props.greetings}</p>
         </div>
     )
 }
