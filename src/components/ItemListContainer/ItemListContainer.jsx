@@ -3,7 +3,7 @@ import "./ItemListContainer.css"
 const ItemListContainer = (props) => {
     return(
         <div className="greetings">
-            <p>{props.greetings}</p>
+            <p>{props.greeting}</p>
         </div>
     )
 }
