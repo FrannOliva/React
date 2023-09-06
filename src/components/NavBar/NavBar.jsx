@@ -1,5 +1,5 @@
 import "./NavBar.css"
-import logotipo from "../img/logoRecortado.png"
+import logotipo from "../../../src/img/logoRecortado.png"
 import CartWidget from "../CartWidget/CartWidget"
 
 const NavBar = () => {
@@ -16,6 +16,6 @@ const NavBar = () => {
             <CartWidget />
         </div>
     )
-} 
+}
 
 export default NavBar
