@@ -5,7 +5,7 @@ import NavBar from './components/NavBar/NavBar'
 function App() {
   return (
     <>
-      <NavBar />
+      <NavBar/>
       <ItemListContainer greeting= "Bienvenidos a BANIRA"/>
     </>
   )
