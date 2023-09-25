@@ -3,14 +3,15 @@ import logotipo from "../../../src/img/logoRecortado.png"
 import CartWidget from "../CartWidget/CartWidget"
 
 const NavBar = () => {
+
     return(
         <div className="navbar">
             <img className="logotipo" src={logotipo} alt="LOGOTIPO"/>
             <div className="container">
                 <ul>
-                    <li><a>INICIO</a></li>
+                    <li><a>HOME</a></li>
                     <li><a>PRODUCTOS</a></li>
-                    <li><a>NOSOTROS</a></li>
+                    <li><a>CONTACTO</a></li>
                 </ul>
             </div>
             <CartWidget />

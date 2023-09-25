@@ -1,11 +1,22 @@
-.greetings{
-    display: flex;
-    align-items: center;
+.container{
     justify-content: center;
 }
+.container ul{
+    display: flex;
+    flex-direction: row;
+}
 
-.greetings p{
-    padding-top: 20px;
-    font-size: 40px;
-    color: #F0EBD8;
+.container ul li{
+    list-style: none;
+}
+
+.container ul li a{
+    cursor: pointer;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+h1{
+    color: aliceblue;
 }

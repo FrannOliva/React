@@ -1,10 +1,11 @@
+import Layout from "../Layout/Layout"
 import "./ItemListContainer.css"
 
-const ItemListContainer = (props) => {
+const ItemListContainer = () => {
     return(
-        <div className="greetings">
-            <p>{props.greeting}</p>
-        </div>
+        <Layout>
+            <h1>HOLA</h1>
+        </Layout>
     )
 }
 
