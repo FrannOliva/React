@@ -1,10 +1,13 @@
 import Layout from "../Layout/Layout"
+import Item from "../Item/Item"
 import "./ItemListContainer.css"
 
 const ItemListContainer = () => {
     return(
         <Layout>
-            <h1>HOLA</h1>
+            <div className="items">
+                <Item />
+            </div>
         </Layout>
     )
 }

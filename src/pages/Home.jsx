@@ -1,11 +1,12 @@
-import NavBar from "../components/NavBar/NavBar"
+import Layout from "../components/Layout/Layout"
 
 const Home = () => {
 
     return(
         <>
-            <NavBar />
-            <h1>Hola soy el Home</h1>
+            <Layout>
+                <h1>Home</h1>
+            </Layout>
         </>
     )
 }

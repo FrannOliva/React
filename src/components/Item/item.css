@@ -1,0 +1,19 @@
+.itemsContenedor{
+    margin: 20px;
+    padding: 20px;
+    width: 540px;
+    background-color: #F0EBD8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.itemsContenedor img{
+    width: 500px;
+    margin-bottom: 6px;
+}
+
+.itemsContenedor a{
+    color: red;
+}
