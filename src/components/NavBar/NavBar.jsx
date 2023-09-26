@@ -1,12 +1,13 @@
 import "./NavBar.css"
 import logotipo from "../../../src/img/logoRecortado.png"
 import CartWidget from "../CartWidget/CartWidget"
+import { Link } from "react-router-dom"
 
 const NavBar = () => {
 
     return(
         <div className="navbar">
-            <img className="logotipo" src={logotipo} alt="LOGOTIPO"/>
+            <Link to={`/`}><img className="logotipo" src={logotipo} alt="LOGOTIPO"/></Link>
             <div className="container">
                 <ul>
                     <li><a>HOME</a></li>
