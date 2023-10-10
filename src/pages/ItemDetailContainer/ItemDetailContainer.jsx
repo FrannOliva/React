@@ -3,7 +3,8 @@ import "./ItemDetailContainer.css"
 import { products } from "../../products"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-
+import { db } from "../../db/db"
+import { doc, getDoc } from "firebase/firestore"
 const ItemDetailContainer = () => {
     const { id } = useParams()
     const [product, setProduct] = useState({})
@@ -14,6 +15,20 @@ const ItemDetailContainer = () => {
     )
     
     useEffect(() => {
+        //creamos la referencia de nuestro producto
+        const productRef = doc(db, "products", "d5osCf22ZzeZXUlKTJD8")
+
+        //usamos la funcion getDoc para obtener un unico producto
+        getDoc(productRef).then((response)=>{
+        //verificamos si el producto con ese id existe
+            if(response.exists()){
+            //si existe le damos el formato correcto
+            const product = { id: response.id, ...response.data() }
+            console.log(product)
+        }else{
+            console.log("el producto no existe")
+        }
+        })
         setTimeout(() => {
             setProduct(searchProduct)
             setIsLoading(false)

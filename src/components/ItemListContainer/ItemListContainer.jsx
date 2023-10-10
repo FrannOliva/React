@@ -7,6 +7,17 @@ const ItemListContainer = () => {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
+        // const productsRef = collection(db, "productos")
+        
+        // getDocs(productsRef).then((response)=>{
+        // const productsFirebase = response.docs.map((product)=>(
+        //     { id: product.id, ...product.data() }
+        // ))
+
+        // console.log(productsFirebase)
+        
+        // })
+
         setTimeout(() => {
             setIsLoading(false)
         }, 1200)
