@@ -1,39 +1,36 @@
 import Layout from "../../components/Layout/Layout"
 import "./ItemDetailContainer.css"
-import { products } from "../../products"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { db } from "../../db/db"
-import { doc, getDoc } from "firebase/firestore"
+import { collection, getDocs } from "firebase/firestore"
 const ItemDetailContainer = () => {
     const { id } = useParams()
     const [product, setProduct] = useState({})
     const [isLoading, setIsLoading] = useState(true)
     
-    const searchProduct = products.find(
-        (product) => product.id === parseInt(id)
-    )
-    
     useEffect(() => {
-        //creamos la referencia de nuestro producto
-        const productRef = doc(db, "products", "d5osCf22ZzeZXUlKTJD8")
+        const productsRef = collection(db, "products")
+        getDocs(productsRef)
+            .then((response) => {
+                const productsFirebase = response.docs.map((product) => ({ id: product.id, ...product.data() }))
+    
+                const searchProduct = productsFirebase.find((product) => product.id === id)
+    
+                if (searchProduct) {
+                    setProduct(searchProduct)
+                } else {
+                    console.log("Producto no encontrado en Firestore")
+                }
+            })
+            .catch((error) => {
+                console.log("Error al cargar productos desde Firestore:", error)
+            })
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1600)
+    }, [id]);
 
-        //usamos la funcion getDoc para obtener un unico producto
-        getDoc(productRef).then((response)=>{
-        //verificamos si el producto con ese id existe
-            if(response.exists()){
-            //si existe le damos el formato correcto
-            const product = { id: response.id, ...response.data() }
-            console.log(product)
-        }else{
-            console.log("el producto no existe")
-        }
-        })
-        setTimeout(() => {
-            setProduct(searchProduct)
-            setIsLoading(false)
-        }, 1200)
-    }, [])
 
     return (
         <Layout>
@@ -66,3 +63,4 @@ const ItemDetailContainer = () => {
 }
 
 export default ItemDetailContainer
+
