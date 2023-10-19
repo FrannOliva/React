@@ -20,7 +20,6 @@ const ItemListContainer = () => {
             setIsLoading(false)
         }, 1200)
     }, [])
-
     return(
         <Layout>
             {isLoading ? (

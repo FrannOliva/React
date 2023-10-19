@@ -20,11 +20,11 @@ const ItemDetailContainer = () => {
                 if (searchProduct) {
                     setProduct(searchProduct)
                 } else {
-                    console.log("Producto no encontrado en Firestore")
+                    console.log("Producto no encontrado")
                 }
             })
             .catch((error) => {
-                console.log("Error al cargar productos desde Firestore:", error)
+                console.log(error)
             })
             setTimeout(() => {
                 setIsLoading(false)
