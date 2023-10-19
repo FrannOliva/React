@@ -1,7 +1,30 @@
-footer{
-    background-color: #F0EBD8;
-    height: 90px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+ul{
+    list-style: none;
+}
+
+footer {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: #0d1321;
+    font-size: 20px;
+    background-color: #f0ebd8;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas: "navFooter redesSociales extra";
+    place-items: start center; 
+}
+footer .navFooter .tituloFooter, footer .redesSociales .tituloFooter, footer .extra .tituloFooter {
+    color: #0d1321;
+    margin-bottom: 8px; 
+}
+footer .navFooter li a, footer .redesSociales li a, footer .extra li a {
+    color: #808080;
+    transition: 330ms; 
+    cursor: pointer;
+}
+footer .navFooter li a:hover, footer .redesSociales li a:hover, footer .extra li a:hover {
+    color: #202d4d;
 }
