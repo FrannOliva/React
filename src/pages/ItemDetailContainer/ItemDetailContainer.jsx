@@ -1,13 +1,15 @@
 import Layout from "../../components/Layout/Layout"
 import "./ItemDetailContainer.css"
 import { useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { db } from "../../db/db"
 import { collection, getDocs } from "firebase/firestore"
+import { CarritoContexto } from "../../context/CartContext"
 const ItemDetailContainer = () => {
     const { id } = useParams()
     const [product, setProduct] = useState({})
     const [isLoading, setIsLoading] = useState(true)
+    const { addToCart, listProducts, setListProducts } = useContext(CarritoContexto)
     
     useEffect(() => {
         const productsRef = collection(db, "products")
@@ -31,7 +33,8 @@ const ItemDetailContainer = () => {
             }, 1600)
     }, [id]);
 
-
+    setListProducts(product)
+    console.log(listProducts)
     return (
         <Layout>
             {isLoading ? (
@@ -46,14 +49,7 @@ const ItemDetailContainer = () => {
                             <h1>{product.name}</h1>
                             <p className="price">${product.price} <span>¡Podés pagarlo en cuotas sin interes!</span></p>
                             <p>{product.description}</p>
-                            <div className="talles">
-                                <button class="button-24" role="button">XS</button>
-                                <button class="button-24" role="button">S</button>
-                                <button class="button-24" role="button">M</button>
-                                <button class="button-24" role="button">L</button>
-                                <button class="button-24" role="button">XL</button>
-                            </div>
-                            <button className="button-27" role="button">Agregar al Carrito</button>
+                            <button className="button-27" role="button" onClick={() => {addToCart(product.id), console.log(product.quantity)}}>Agregar al Carrito</button>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,52 @@
+.carrito, .carritoVacio{
+  min-height: 840px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px ;
+  align-items: center;
+  color: #f0ebd8;
+}
+
+.carrito h1, .carritoVacio{
+  margin-top: 10px;
+}
+
+.producto{
+  border: solid 1px #f0ebd8;
+  width: 750px;
+  display: flex;
+  flex-direction: row;
+  box-shadow: #f0ebd8 0px 3px 8px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.producto img{
+  width: 200px;
+}
+
+.informacion{
+  display: flex;
+  justify-content: space-between;
+  width: 750px;
+}
+
+.nombreCantidad{
+  margin-top: 6px;
+  margin-left: 10px;
+}
+
+.nombreCantidad h2{
+  font-size: 26px;
+}
+.precioTotal{
+  font-size: 18px;
+  margin-top: 10px;
+  margin-right: 15px;
+}
+
+.nombreCantidad p, .producto p{
+  font-size: 18px;
+  color: #f0ebd8;
+}
