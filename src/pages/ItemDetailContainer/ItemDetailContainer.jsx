@@ -5,6 +5,8 @@ import { useContext, useEffect, useState } from "react"
 import { db } from "../../db/db"
 import { collection, getDocs } from "firebase/firestore"
 import { CarritoContexto } from "../../context/CartContext"
+import Button from "../../components/Button/Button"
+import { toast } from "sonner"
 const ItemDetailContainer = () => {
     const { id } = useParams()
     const [product, setProduct] = useState({})
@@ -49,7 +51,7 @@ const ItemDetailContainer = () => {
                             <h1>{product.name}</h1>
                             <p className="price">${product.price} <span>¡Podés pagarlo en cuotas sin interes!</span></p>
                             <p>{product.description}</p>
-                            <button className="button-27" role="button" onClick={() => {addToCart(product.id), console.log(product.quantity)}}>Agregar al Carrito</button>
+                            <Button onClick={() => {addToCart(product.id), console.log(product.quantity), toast.success("Producto agregado al carrito!")}} texto="AGREGAR AL CARRITO"></Button>
                         </div>
                     </div>
                 </div>

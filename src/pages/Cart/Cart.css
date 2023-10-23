@@ -50,3 +50,8 @@
   font-size: 18px;
   color: #f0ebd8;
 }
+
+.botones{
+  display: flex;
+  gap: 40px;
+}

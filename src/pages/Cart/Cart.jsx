@@ -2,10 +2,16 @@ import "./Cart.css"
 import Layout from "../../components/Layout/Layout"
 import { CarritoContexto } from "../../context/CartContext"
 import { useContext } from "react"
+import Button from "../../components/Button/Button"
+import { toast } from "sonner"
 
 const Cart = () => {
   const {cart}  = useContext(CarritoContexto)
   console.log(cart)
+
+  const order = () => {
+    return new Promise((resolve) => setTimeout(resolve, 3000))
+  }
 
   return(
     <Layout>
@@ -33,6 +39,17 @@ const Cart = () => {
               </div>
             ))
           }
+          <div className="botones">
+            <Button texto="SEGUIR COMPRANDO"/>
+            <Button onClick= {() => {
+              toast.promise(order, {
+                loading: "Procesando su orden.",
+                success: "Orden creada correctamente.",
+                error: "Ocurrió un error con su orden."
+              })}
+              } texto="FINALIZAR COMPRA"/>
+          </div>
+          
         </div>
       }
     </Layout>
