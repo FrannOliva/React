@@ -1,16 +1,52 @@
 import "./Cart.css"
 import Layout from "../../components/Layout/Layout"
 import { CarritoContexto } from "../../context/CartContext"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import Button from "../../components/Button/Button"
 import { toast } from "sonner"
+import { addDoc } from "firebase/firestore"
+import { ordersCollection } from "../../db/db"
+import { Link } from "react-router-dom"
 
 const Cart = () => {
-  const {cart}  = useContext(CarritoContexto)
+  const {cart, setCart}  = useContext(CarritoContexto)
   console.log(cart)
 
-  const order = () => {
-    return new Promise((resolve) => setTimeout(resolve, 3000))
+  const totalOrder = (cart) => {
+    console.log(cart)
+    const totalCantidad = cart.reduce((acc, item) => acc + item.quantity, 0)
+    const totalCompra = cart.reduce((acc, item) => acc + (item.quantity * item.price), 0)
+
+    return{totalCantidad, totalCompra}
+  }
+
+  const {totalCantidad, totalCompra} = totalOrder(cart)
+  console.log(totalCantidad, totalCompra)
+
+  const [buyerData, setBuyerData] = useState({
+    name: "",
+    email: "",
+  })
+
+  const handleBuyerDataChange = (e) => {
+    const { name, value } = e.target;
+    setBuyerData({ ...buyerData, [name]: value })
+  }
+
+  const order = {
+    buyer: buyerData,
+    items: {...cart},
+    products: totalCantidad,
+    price: totalCompra
+  }
+  const createOrderInFireBase = async () => {
+    try {
+      const docRef = await addDoc(ordersCollection, order)
+      setCart([])
+      return docRef.id
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return(
@@ -39,12 +75,41 @@ const Cart = () => {
               </div>
             ))
           }
+          <div className="inputs">
+            <form>
+              <div className="inputGroup">
+                <label htmlFor="name">NOMBRE COMPLETO:</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={buyerData.name}
+                  onChange={handleBuyerDataChange}
+                  required
+                />
+              </div>
+              <div className="inputGroup">
+                <label htmlFor="email">EMAIL:</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={buyerData.email}
+                  onChange={handleBuyerDataChange}
+                  required
+                />
+              </div>
+            </form>
+          </div>
+          <div className="totales">
+            <h3>Total de su compra: <strong>${totalCompra}</strong></h3>
+          </div>
           <div className="botones">
-            <Button texto="SEGUIR COMPRANDO"/>
+            <Link to={`/`}><Button texto="SEGUIR COMPRANDO"/></Link>
             <Button onClick= {() => {
-              toast.promise(order, {
+              toast.promise(createOrderInFireBase, {
                 loading: "Procesando su orden.",
-                success: "Orden creada correctamente.",
+                success: "Orden creada correctamente. Te llegara un email con toda la información!",
                 error: "Ocurrió un error con su orden."
               })}
               } texto="FINALIZAR COMPRA"/>

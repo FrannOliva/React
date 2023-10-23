@@ -55,3 +55,47 @@
   display: flex;
   gap: 40px;
 }
+
+.totales h3{
+  font-weight: 400;
+}
+
+.inputs {
+  display: flex;
+  font-weight: 500;
+  margin: 10px;
+  justify-content: center;
+}
+
+.inputs form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputs label,
+.inputs input {
+  display: block; 
+  margin: 5px; 
+}
+
+.inputGroup {
+  display: inline-block;
+  margin: 5px;
+  align-items: center;
+}
+
+.inputGroup label{
+  font-size: 17px;
+}
+
+.inputGroup input{
+  width: 250px;
+  height: 40px;
+  background-color: transparent;
+  border: solid 1px white;
+  color: #f0ebd8;
+  font-size: 20px;
+  padding: 5px;
+}
