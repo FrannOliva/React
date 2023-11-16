@@ -5,8 +5,8 @@ import { useContext, useEffect, useState } from "react"
 import { db } from "../../db/db"
 import { collection, getDocs } from "firebase/firestore"
 import { CarritoContexto } from "../../context/CartContext"
-import Button from "../../components/Button/Button"
 import { toast } from "sonner"
+import ButtonExample from "../../components/ButtonExample/ButtonExample"
 const ItemDetailContainer = () => {
     const { id } = useParams()
     const [product, setProduct] = useState({})
@@ -32,7 +32,7 @@ const ItemDetailContainer = () => {
             })
             setTimeout(() => {
                 setIsLoading(false)
-            }, 1600)
+            }, 1300)
     }, [id]);
 
     setListProducts(product)
@@ -51,7 +51,7 @@ const ItemDetailContainer = () => {
                             <h1>{product.name}</h1>
                             <p className="price">${product.price} <span>¡Podés pagarlo en cuotas sin interes!</span></p>
                             <p>{product.description}</p>
-                            <Button onClick={() => {addToCart(product.id), console.log(product.quantity), toast.success("Producto agregado al carrito!")}} texto="AGREGAR AL CARRITO"></Button>
+                            <ButtonExample onClick={() => {addToCart(product.id), console.log(product.quantity), toast.success("Producto agregado al carrito!")}} texto="AGREGAR AL CARRITO"></ButtonExample>
                         </div>
                     </div>
                 </div>

@@ -99,3 +99,8 @@
   font-size: 20px;
   padding: 5px;
 }
+
+.botonEliminar{
+  color: #FF4742 !important;
+  cursor: pointer;
+}

@@ -2,11 +2,11 @@ import "./Cart.css"
 import Layout from "../../components/Layout/Layout"
 import { CarritoContexto } from "../../context/CartContext"
 import { useContext, useState } from "react"
-import Button from "../../components/Button/Button"
 import { toast } from "sonner"
 import { addDoc } from "firebase/firestore"
 import { ordersCollection } from "../../db/db"
 import { Link } from "react-router-dom"
+import ButtonExample from "../../components/ButtonExample/ButtonExample"
 
 const Cart = () => {
   const {cart, setCart}  = useContext(CarritoContexto)
@@ -49,6 +49,17 @@ const Cart = () => {
     }
   }
 
+  const eliminarCantidad = (index) => {
+    const updatedCart = [...cart];
+    updatedCart[index].quantity--
+  
+    if (updatedCart[index].quantity === 0) {
+      updatedCart.splice(index, 1);
+    }
+  
+    setCart(updatedCart);
+  };
+
   return(
     <Layout>
       {
@@ -58,7 +69,7 @@ const Cart = () => {
         <div className="carrito">
           <h1>Su carrito de compras: </h1>
           {
-            cart.map(products => (
+            cart.map((products, i) => (
               <div className="producto">
                 <img src={products.img} alt="Error al cargar la imágen" />
                 <div className="informacion">
@@ -66,6 +77,7 @@ const Cart = () => {
                     <h2 className="nombre">{products.name}</h2>
                     <p>Precio unitario: ${products.price}</p>
                     <p className="cantidad">Cantidad: {products.quantity}</p>
+                    <p onClick={() => eliminarCantidad(i)} className="botonEliminar">ELIMINAR UNA UNIDAD</p>
                   </div>
                   <div className="precioTotal">
                     <p>Precio total:</p>
@@ -105,8 +117,8 @@ const Cart = () => {
             <h3>Total de su compra: <strong>${totalCompra}</strong></h3>
           </div>
           <div className="botones">
-            <Link to={`/`}><Button texto="SEGUIR COMPRANDO"/></Link>
-            <Button onClick= {() => {
+            <Link to={`/`}><ButtonExample texto="SEGUIR COMPRANDO"/></Link>
+            <ButtonExample onClick= {() => {
               toast.promise(createOrderInFireBase, {
                 loading: "Procesando su orden.",
                 success: "Orden creada correctamente. Te llegara un email con toda la información!",
