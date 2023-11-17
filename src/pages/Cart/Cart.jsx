@@ -29,7 +29,7 @@ const Cart = () => {
   })
 
   const handleBuyerDataChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setBuyerData({ ...buyerData, [name]: value })
   }
 
@@ -40,25 +40,40 @@ const Cart = () => {
     price: totalCompra
   }
   const createOrderInFireBase = async () => {
+    if (!buyerData.name || !buyerData.email) {
+      toast.error("Por favor, complete todos los campos del formulario.")
+      return
+    }
+
     try {
-      const docRef = await addDoc(ordersCollection, order)
-      setCart([])
-      return docRef.id
+      toast.promise(
+        async () => {
+          const docRef = await addDoc(ordersCollection, order)
+          setCart([])
+          return docRef.id
+        },
+        {
+          loading: "Procesando su orden.",
+          success: "Orden creada correctamente. Te llegará un email con toda la información!",
+          error: "Ocurrió un error con su orden.",
+        }
+      )
     } catch (error) {
       console.error(error)
+      toast.error("Ocurrió un error con su orden.")
     }
   }
 
   const eliminarCantidad = (index) => {
-    const updatedCart = [...cart];
+    const updatedCart = [...cart]
     updatedCart[index].quantity--
   
     if (updatedCart[index].quantity === 0) {
-      updatedCart.splice(index, 1);
+      updatedCart.splice(index, 1)
     }
   
-    setCart(updatedCart);
-  };
+    setCart(updatedCart)
+  }
 
   return(
     <Layout>
@@ -118,15 +133,8 @@ const Cart = () => {
           </div>
           <div className="botones">
             <Link to={`/`}><ButtonExample texto="SEGUIR COMPRANDO"/></Link>
-            <ButtonExample onClick= {() => {
-              toast.promise(createOrderInFireBase, {
-                loading: "Procesando su orden.",
-                success: "Orden creada correctamente. Te llegara un email con toda la información!",
-                error: "Ocurrió un error con su orden."
-              })}
-              } texto="FINALIZAR COMPRA"/>
+            <ButtonExample onClick={() => createOrderInFireBase()} texto="FINALIZAR COMPRA" />
           </div>
-          
         </div>
       }
     </Layout>
