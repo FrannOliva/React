@@ -17,3 +17,19 @@
 .itemsContenedor a{
     color: red;
 }
+
+.filtros{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.filtros p{
+    color: #f0ebd8 !important;
+    cursor: pointer;
+    margin: 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
